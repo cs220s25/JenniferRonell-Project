@@ -1,0 +1,10 @@
+[Unit]
+Description=Launch the Flask server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/JenniferRonell-Project/.venv/bin/gunicorn --chdir /JenniferRonell-Project --bind 0.0.0.0:80 --workers 2 app:app
+
+[Install]
+WantedBy=multi-user.target
