@@ -15,7 +15,7 @@ jobs:
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
-        java-version: '17'  # or your preferred Java version
+        java-version: '17'
 
     - name: Cache Maven packages
       uses: actions/cache@v4
@@ -25,6 +25,9 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
+
+    - name: Set up .env file
+      run: echo "DISCORD_TOKEN=your-discord-token" > .env
 
     - name: Build and Run Tests
       run: mvn clean test
