@@ -7,7 +7,5 @@ git clone https://github.com/cs220s25/JenniferRonell-Project /JenniferRonell-Pro
 cd /JenniferRonell-Project
 mvn clean package
 cp discord_bot.service /etc/systemd/system/
-sudo systemctl enable redis
-sudo systemctl start redis
 systemctl enable discord_bot.service
 systemctl start discord_bot.service
