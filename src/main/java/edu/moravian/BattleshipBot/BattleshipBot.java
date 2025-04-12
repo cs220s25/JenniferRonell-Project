@@ -1,7 +1,6 @@
 package edu.moravian.BattleshipBot;
+import edu.moravian.BattleshipBot.exceptions.SecretsException;
 import edu.moravian.BattleshipBot.exceptions.StorageException;
-import io.github.cdimascio.dotenv.Dotenv;
-import io.github.cdimascio.dotenv.DotenvException;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -16,46 +15,43 @@ public class BattleshipBot {
         BotResponder responder = createResponder(storage);
         String token = loadToken();
         startBot(responder, token);
+    }
+
+    public static RedisStorage createStorage() {
+        RedisStorage storage = null;
+        try {
+            storage = new RedisStorage("localhost", 6379);
+            storage.testConnection();
+        } catch (StorageException e) {
+            System.err.println("Failed to connect to Redis.");
+            System.exit(1);
         }
 
-        public static RedisStorage createStorage()
-        {
-            RedisStorage storage = null;
-            try
-            {
-                storage = new RedisStorage("localhost", 6379);
-                storage.testConnection();
-            }
-            catch (StorageException e)
-            {
-                System.err.println("Failed to connect to Redis.");
-                System.exit(1);
-            }
+        return storage;
+    }
 
-            return storage;
+    private static BotResponder createResponder(BattleshipGameStorage storage) {
+        BattleshipGame game = new BattleshipGame(storage);
+        return new BotResponder(game);
+    }
+
+
+    private static String loadToken() {
+        try {
+            String secretName = "220_Discord_Token";
+            String secretKey = "DISCORD_TOKEN";
+
+            Secrets secrets = new Secrets();
+
+            String secret = secrets.getSecret(secretName, secretKey);
+            System.out.println(secret);
+            return secret;
+        } catch (SecretsException e) {
+            System.out.println(e.getMessage());
+            System.exit(1);
+            return null;
         }
-
-        private static BotResponder createResponder(BattleshipGameStorage storage)
-        {
-            BattleshipGame game = new BattleshipGame(storage);
-            return new BotResponder(game);
-        }
-
-
-        private static String loadToken()
-        {
-            try
-            {
-                Dotenv dotenv = Dotenv.load();
-                return dotenv.get("DISCORD_TOKEN");
-            }
-            catch(DotenvException e)
-            {
-                System.err.println("Failed to load .env file.");
-                System.exit(1);
-                return null;  // needed for the compiler
-            }
-        }
+    }
 
         private static void startBot(BotResponder responder, String token)
         {
