@@ -1,5 +1,6 @@
 #!/bin/bash
-yum install -y maven-amazon-corretto21
+yum install maven-amazon-corretto21 -y
+yum install git -y
 git clone https://github.com/cs220s25/JenniferRonell-Project /JenniferRonell-Project
 cd /JenniferRonell-Project
 mvn clean package
