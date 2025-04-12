@@ -1,10 +1,12 @@
 [Unit]
-Description=Launch the Flask server
-After=network-online.target
-Wants=network-online.target
+Description=Battleship Discord Bot Service
+After=network.target
 
 [Service]
-ExecStart=/JenniferRonell-Project/.venv/bin/gunicorn --chdir /JenniferRonell-Project --bind 0.0.0.0:80 --workers 2 app:app
+WorkingDirectory=/JenniferRonell-Project
+ExecStart=/usr/bin/java -cp target/dbot 1.0-SNAPSHOT.jar edu.moravian.BattleshipBot.BattleshipBot
+Restart=on-failure
+User=ec2-user
 
 [Install]
 WantedBy=multi-user.target
