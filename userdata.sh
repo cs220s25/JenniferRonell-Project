@@ -10,5 +10,4 @@ python3 -m venv .venv
 cp discord_bot.service /etc/systemd/system/
 systemctl enable discord_bot.service
 systemctl start discord_bot.service
-java -jar target/dbot-1.0-SNAPSHOT.jar
 redis6-server

@@ -3,7 +3,7 @@ Description=Battleship Discord Bot Service
 After=network.target
 
 [Service]
-WorkingDirectory=/home/ec2-user/Documents/220/JenniferRonell-Project
+WorkingDirectory=/home/ec2-user/JenniferRonell-Project
 ExecStart=/usr/bin/java -jar target/dbot-1.0-SNAPSHOT.jar
 Restart=on-failure
 User=ec2-user
