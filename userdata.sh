@@ -1,11 +1,14 @@
 #!/bin/bash
 yum install maven-amazon-corretto21 -y
 yum install git -y
-yum install -y redis
+yum install redis6 -y
 
-git clone https://github.com/cs220s25/JenniferRonell-Project /JenniferRonell-Project
+git clone https://github.com/cs220s25/JenniferRonell-Project.git
 cd /JenniferRonell-Project
 mvn clean package
+python3 -m venv .venv
 cp discord_bot.service /etc/systemd/system/
 systemctl enable discord_bot.service
 systemctl start discord_bot.service
+java -jar target/dbot-1.0-SNAPSHOT.jar
+redis6-server
