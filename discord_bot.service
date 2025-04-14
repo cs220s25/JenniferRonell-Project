@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=/home/ec2-user/Documents/220/JenniferRonell-Project
-ExecStart=/usr/bin/java -cp target/dbot 1.0-SNAPSHOT.jar edu.moravian.BattleshipBot.BattleshipBot
+ExecStart=/usr/bin/java -jar target/dbot-1.0-SNAPSHOT.jar
 Restart=on-failure
 User=ec2-user
 
