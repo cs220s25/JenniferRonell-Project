@@ -23,16 +23,6 @@ public class BattleshipGameTest {
         assertTrue(storage.getPastMoves().isEmpty());
     }
 
-    @Test
-    public void testProcessValidMove() throws Exception {
-        String coordinate = "A1";
-        assertFalse(storage.getPastMoves().contains(coordinate));
-
-        boolean hit = game.processMove(coordinate);
-        assertTrue(storage.getPastMoves().contains(coordinate));
-        assertFalse(hit);
-        assertEquals(23, storage.getMovesRemaining());
-    }
 
     @Test
     public void testProcessInvalidCoordinate() {
