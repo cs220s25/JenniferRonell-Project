@@ -14,5 +14,8 @@ docker build -t discord-bot .
 docker rm -f discord-bot-container 2>/dev/null || true
 
 # Run new container with Redis configuration
-docker run -d --name discord-bot-container -e REDIS_HOST=redisdb -e REDIS_PORT=6379 discord-bot
+docker run -d --name redis -p 6379:6379 redis
+
+# Start new Discord bot container, setting Redis environment variables
+docker run -d --name discord-bot-container -e REDIS_HOST=localhost -e REDIS_PORT=6379 discord-bot
 
