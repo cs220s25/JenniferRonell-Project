@@ -21,7 +21,8 @@ public class BotResponses {
 
 
     public static String miss(String username, String coordinate, int movesLeft) {
-        return "🌊 Miss! No ship at " + coordinate + ". " + username + " has " + movesLeft + (movesLeft > 1 ? " moves left." : " move left.") + " Try again!";
+        return "IT WORKED!";
+        //return "🌊 Miss! No ship at " + coordinate + ". " + username + " has " + movesLeft + (movesLeft > 1 ? " moves left." : " move left.") + " Try again!";
     }
 
 
