@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Navigate to project directory
-cd /JenniferRonell-Project
+cd /home/ec2-user/JenniferRonell-Project
 
 # Create Docker network if it doesn't exist
 if ! docker network inspect dbot &>/dev/null; then
