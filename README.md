@@ -160,4 +160,5 @@ After completing these steps, your updated code will automatically redeploy, and
 
 [Create an AWS Secrets Manager secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/create_secret.html)
 
+**Parts of the setup instructions, CI/CD pipeline guidance, and project documentation were developed with the assistance of OpenAI's ChatGPT*
 
