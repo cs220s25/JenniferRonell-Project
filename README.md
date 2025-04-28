@@ -7,6 +7,8 @@ This project is a Discord bot that is modeled after the popular board game Battl
  on a 7x7 grid and allowing the user to guess the location of the ships using a coordinate on the grid. The bot will
  respond with a hit or miss message and will keep track of the user's past moves and ships sunk.
 
+<img src="./UML.png" alt="UML Diagram" width="700"/>
+
 ## Usage
 
 The user can interact with the bot by sending messages in the Discord chat.
