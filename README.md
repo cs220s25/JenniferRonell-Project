@@ -6,9 +6,6 @@
  on a 7x7 grid and allowing the user to guess the location of the ships using a coordinate on the grid. The bot will
  respond with a hit or miss message and will keep track of the user's past moves and ships sunk.`
 
-## System Diagram
-
-![System Diagram](system_diagram.png)
 
 `This project was created with the intended purpose of keeping the application side seperate from the Discord and game 
  storage side. The Discord side is responsible for handling the user's input and output, while the application side is 
