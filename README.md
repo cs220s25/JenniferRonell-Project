@@ -44,12 +44,12 @@ aws_session_token=IQoJb3JpZ2luX2VjECsaCXVzLXdlc3QtMiJHMEUCIFNJRpsBQBxwT+nRg1vX7x
 redis-server
 ```
 
-5. Clone the repository.
+5. In a seperate, new terminal window, clone the repository.
 ```bash
 git clone https://github.com/cs220s25/JenniferRonell-Project.git
 ```
 
-6. Navigate to the project (Using a new terminal window seperate from redis).
+6. Navigate to the project.
 ```bash
 cd ~/JenniferRonell-Project
 ```
