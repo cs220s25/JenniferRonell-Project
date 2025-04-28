@@ -144,3 +144,18 @@ Once the EC2 Instance is created and running, the bot will be active and replyin
 
 After completing these steps, your updated code will automatically redeploy, and the changes will take effect in your Discord bot.
 
+# Technologies Used
+* GitHub
+* Discord
+* Docker
+* Amazon Web Services (AWS)
+
+# Background
+
+[How to Use the Redis Docker Official Image](https://www.docker.com/blog/how-to-use-the-redis-docker-official-image/)
+
+[Deploying with GitHub Actions](https://docs.github.com/en/actions/use-cases-and-examples/deploying/deploying-with-github-actions)
+
+[Create an AWS Secrets Manager secret](https://docs.aws.amazon.com/secretsmanager/latest/userguide/create_secret.html)
+
+
