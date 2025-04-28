@@ -7,6 +7,5 @@ git clone https://github.com/cs220s25/JenniferRonell-Project /home/ec2-user/Jenn
 cd /home/ec2-user/JenniferRonell-Project
 mvn clean package
 cp discord_bot.service /etc/systemd/system/
-systemctl enable discord_bot.service
 systemctl start discord_bot.service
 redis6-server
