@@ -15,4 +15,5 @@ jobs:
           key: ${{ secrets.LABSUSERPEM }}
           script: |
             cd /home/ec2-user/JenniferRonell-Project
+            sudo chmod +x redeploy.sh
             ./redeploy.sh
