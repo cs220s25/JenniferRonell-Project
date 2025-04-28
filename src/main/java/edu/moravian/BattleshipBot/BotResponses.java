@@ -7,7 +7,7 @@ public class BotResponses {
     }
 
     public static String gameStarted() {
-        return "🎉 Welcome to Battleship! A 7x7 game board has been created. 🎉\n" +
+        return "🎉 Welcome to Battleship! A 7x7 game board has been created. \n" +
                 " I’ve hidden three ships of lengths 2, 3, and 4 across it.\n " +
                 "You have 24 moves to sink all the ships. To make a move, enter a coordinate from A1-G7 (Columns are A-G and rows are 1-7)\n" +
                 " You can end the game early at any point using `!endgame`, and can check the current game stats using `!status`.\n" +
