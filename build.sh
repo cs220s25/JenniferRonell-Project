@@ -5,3 +5,6 @@ mvn clean package
 
 # Build the Docker image
 docker build -t discord-bot .
+
+# Build the Redis image
+docker build -t redis .
