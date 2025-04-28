@@ -68,3 +68,50 @@ java -jar target/dbot-1.0-SNAPSHOT.jar
 
 
 ## Deploy with AWS
+
+<b>1. Create a Discord Bot Token</b>
+
+* Go to the Discord Developer Portal.
+* Click "New Application", give it a name, and create it.
+* Under the "Bot" section, create a bot for your application.
+* Copy the bot's token (you will need it for the next step).
+
+
+<b>2. Store the Token in AWS Secrets Manager</b>
+* Open the AWS Console, and go to Secrets Manager.
+* Click Store a new secret.
+* Select Other type of secret.
+
+ In the Key/Value section:
+
+* Key: DISCORD_TOKEN
+* Value: (paste your Discord bot token here)
+* Click Next.
+
+* On the "Configure Secret" page:
+
+* Secret Name: 220_Discord_Token
+
+* Click through the remaining screens keeping the default values and then click "Store".
+
+<b>3. Launch an EC2 Instance in AWS</b>
+* Key Pair: Vockey
+* Under Advanced → IAm Instance Profile, choose LabInstanceProfile
+* Under Advanced → User Data, paste the contents of userdata.sh below
+```bash
+#!/bin/bash
+yum install maven-amazon-corretto21 -y
+yum install git -y
+yum install redis6 -y
+
+git clone https://github.com/cs220s25/JenniferRonell-Project /home/ec2-user/JenniferRonell-Project
+
+cd /home/ec2-user/JenniferRonell-Project
+mvn clean package
+cp discord_bot.service /etc/systemd/system/
+systemctl start discord_bot.service
+redis6-server
+```
+Once the EC2 Instance is created and running, the bot will be active and replying to its designated commands!
+
+# Redeploying
