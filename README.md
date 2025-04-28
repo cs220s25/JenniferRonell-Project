@@ -27,9 +27,9 @@ The following commands are viable for the bot to respond to:<br>
 mkdir ~/.aws
 ```
 2. Get your AWS credentials:
-	* Start the AWS Learner Lab.
-	* Click AWS Details → Show under AWS CLI.
-	* Copy the credentials:
+* Start the AWS Learner Lab.
+* Click AWS Details → Show under AWS CLI.
+* Copy the credentials:
 
 ```bash
 [default]
@@ -39,27 +39,27 @@ aws_session_token=IQoJb3JpZ2luX2VjECsaCXVzLXdlc3QtMiJHMEUCIFNJRpsBQBxwT+nRg1vX7x
 ```
 3. Paste the credentials into ~/.aws/credentials.
 
-4. Start Redis in a new terminal window
+4. Start Redis in a new terminal window.
 ```bash
 redis-server
 ```
 
-5. Clone the repository
+5. Clone the repository.
 ```bash
 git clone https://github.com/cs220s25/JenniferRonell-Project.git
 ```
 
-6. Navigate to the project (Using a new terminal window seperate from redis)
+6. Navigate to the project (Using a new terminal window seperate from redis).
 ```bash
 cd ~/JenniferRonell-Project
 ```
 
-7. Package the project
+7. Package the project.
 ```bash
 mvn package
 ```
 
-8. Run the bot
+8. Run the bot.
 ```bash
 java -jar target/dbot-1.0-SNAPSHOT.jar
 ```
@@ -70,7 +70,6 @@ java -jar target/dbot-1.0-SNAPSHOT.jar
 ## Deploy with AWS
 
 <b>1. Create a Discord Bot Token</b>
-
 * Go to the Discord Developer Portal.
 * Click "New Application", give it a name, and create it.
 * Under the "Bot" section, create a bot for your application.
@@ -87,17 +86,14 @@ java -jar target/dbot-1.0-SNAPSHOT.jar
 * Key: DISCORD_TOKEN
 * Value: (paste your Discord bot token here)
 * Click Next.
-
 * On the "Configure Secret" page:
-
 * Secret Name: 220_Discord_Token
-
 * Click through the remaining screens keeping the default values and then click "Store".
 
 <b>3. Launch an EC2 Instance in AWS</b>
 * Key Pair: Vockey
-* Under Advanced → IAm Instance Profile, choose LabInstanceProfile
-* Under Advanced → User Data, paste the contents of userdata.sh below
+* Under Advanced → IAm Instance Profile, choose LabInstanceProfile.
+* Under Advanced → User Data, paste the contents of userdata.sh below.
 ```bash
 #!/bin/bash
 yum install maven-amazon-corretto21 -y
@@ -115,3 +111,36 @@ redis6-server
 Once the EC2 Instance is created and running, the bot will be active and replying to its designated commands!
 
 # Redeploying
+
+## Redeploy with AWS
+
+<b>1. Create GitHub Action Secret: Public IP</b>
+* Retrieve the Public IPv4 address from your AWS EC2 Instance.
+* Navigate to JenniferRonell-Project Repository → Settings → Secrets and Variables → Actions.
+* Click on "New repository secret".
+* Name: PUBLICIP
+* Secret: Paste the public IP address.
+
+<b>2. Create GitHub Action Secret: Labsuser key</b>
+* Launch AWS learner lab.
+* Under AWS Details, click Show next to "SSH key".
+* Copy the entire RSA private key, including the begin and end
+```bash
+-----BEGIN RSA PRIVATE KEY-----
+       <RSA_PRIVATE_KEY>
+-----END RSA PRIVATE KEY-------
+``` 
+* Navigate to the GitHub Repository.
+* Go to Settings → Secrets and Variables → Actions.
+* Click on "New repository secret".
+* Name: LABSUSERPEM
+* Secret: Paste the RSA private key.
+
+<b>3. Run Deploy on AWS</b>
+* After making changes to the source code, push your changes.
+* Navigate to the JenniferRonell-Project repository → Actions.
+* Under "All workflows", select "Run on AWS".
+* Click "Run workflow", then "Run workflow".
+
+After completing these steps, your updated code will automatically redeploy, and the changes will take effect in your Discord bot.
+
