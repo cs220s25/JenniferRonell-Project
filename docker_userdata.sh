@@ -11,9 +11,9 @@ usermod -a -G docker ec2-user
 
 yum install -y git
 
-git clone https://github.com/cs220s25/JenniferRonell-Project.git
+git clone https://github.com/cs220s25/JenniferRonell-Project.git /home/ec2-user/JenniferRonell-Project
 
-cd /JenniferRonell-Project
+cd /home/ec2-user/JenniferRonell-Project
 
 #Make sure all of the files are executable
 chmod +x *.sh
