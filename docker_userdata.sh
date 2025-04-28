@@ -15,8 +15,8 @@ git clone https://github.com/cs220s25/JenniferRonell-Project.git
 
 cd /JenniferRonell-Project
 
-# Make sure build.sh and docker_redeploy.sh are executable
-chmod +x build.sh docker_redeploy.sh
+#Make sure all of the files are executable
+chmod +x *.sh
 
 ./build.sh
 
