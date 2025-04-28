@@ -146,6 +146,8 @@ After completing these steps, your updated code will automatically redeploy, and
 
 # Technologies Used
 * GitHub
+* Maven
+* Redis
 * Discord
 * Docker
 * Amazon Web Services (AWS)
