@@ -29,7 +29,7 @@ mkdir ~/.aws
 2. Get your AWS credentials:
 * Start the AWS Learner Lab.
 * Click AWS Details → Show under AWS CLI.
-* Copy the credentials:
+* Copy the credentials.
 
 ```bash
 [default]
