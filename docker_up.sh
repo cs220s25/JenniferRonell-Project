@@ -15,6 +15,9 @@ fi
 docker rm -f redis 2>/dev/null || true
 docker rm -f discord-bot-container 2>/dev/null || true
 
+# Build Docker image
+docker build -t discord-bot .
+
 # Start Redis container
 docker run -d --network dbot --name redis -p 6379:6379 redis
 
