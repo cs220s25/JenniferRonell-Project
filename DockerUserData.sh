@@ -14,3 +14,4 @@ git clone https://github.com/cs220s25/JenniferRonell-Project.git
 
 cd /JenniferRonell-Project
 ./build.sh
+./DockerRedeploy.sh
