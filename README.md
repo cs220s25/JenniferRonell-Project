@@ -111,7 +111,7 @@ mvn clean package
 
 * Once everything is packed and completed, run the `./docker_up.sh`
 
-* If you are still having trouble with runninng this, try running `docker build -t discord-bot .`
+* If you are still having trouble with running this, try running `docker build -t discord-bot .`
 
 
 
