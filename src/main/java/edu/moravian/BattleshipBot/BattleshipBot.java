@@ -18,9 +18,12 @@ public class BattleshipBot {
     }
 
     public static RedisStorage createStorage() {
+        String redisHost = System.getenv().getOrDefault("REDIS_HOST", "localhost");
+        int redisPort = Integer.parseInt(System.getenv().getOrDefault("REDIS_PORT", "6379"));
+
         RedisStorage storage = null;
         try {
-            storage = new RedisStorage("localhost", 6379);
+            storage = new RedisStorage(redisHost, redisPort);
             storage.testConnection();
         } catch (StorageException e) {
             System.err.println("Failed to connect to Redis.");
