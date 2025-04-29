@@ -68,6 +68,97 @@ java -jar target/dbot-1.0-SNAPSHOT.jar
 
 ## Deploy with Docker
 
+<b>1. Launch an EC2 Instance
+
+* Use the same LabInstanceProfile and Vockey key pair as in the AWS section.
+
+* Under Advanced → User Data, paste the contents of docker_userdata.sh:
+```bash
+#!/bin/bash
+
+#Install and configure Docker
+yum install -y docker
+systemctl enable docker
+systemctl start docker
+
+# Add ec2-user to the docker group so that it can run docker commands without sudo.
+usermod -a -G docker ec2-user
+
+yum install -y git
+yum install -y maven
+
+git clone https://github.com/cs220s25/JenniferRonell-Project.git /home/ec2-user/JenniferRonell-Project
+
+cd /home/ec2-user/JenniferRonell-Project
+
+#Make sure all of the files are executable
+chmod +x *.sh
+
+mvn clean package
+
+./docker_up.sh
+
+```
+
+<b>2. Connct to the EC2 instance via SSh
+
+```bash
+ ssh -i ~/.ssh/labsuser.pem ec2-user@<Your IP address>
+
+```
+
+<b>3. Prepare the Environment
+
+* Once everything is packed and completed, run the `./docker_up.sh`
+
+* If you are still having trouble with runninng this, try running `docker build -t discord-bot .`
+
+
+
+<b>4. Build and Deploy Containers
+
+* Use the provided docker_up.sh script to build and launch the Docker containers.
+
+``` bash
+./docker_up.sh
+```
+* This script performs the following tasks:
+
+* Creates a Docker network named dbot (if it doesn’t already exist).
+* Removes any existing containers named redis or discord-bot-container.
+* Builds a new Docker image from the Dockerfile and tags it as discord-bot.
+* Launches a Redis container and connects it to the dbot network.
+* Starts the Discord bot container with the required environment variables:
+* REDIS_HOST=redis
+* REDIS_PORT=6379 
+
+<b>5. Monitor the Bot
+* You can view logs using:
+
+``` bash
+docker logs -f discord-bot-container
+```
+This will show the bot starting up and any activity it's performing (e.g., responding to Discord commands).
+
+
+<b> 6. Shut Down the Docker Stack
+* To safely stop the bot and Redis, use the docker_down.sh script:
+
+```bash
+./docker_down.sh
+```
+
+* This script will:
+
+* Stop and remove the Discord bot container
+
+* Save Redis data to disk (via redis-cli save)
+
+* Stop and remove the Redis container
+
+* Remove the Docker network dbot if it exists
+
+
 
 ## Deploy with AWS
 
@@ -113,8 +204,6 @@ redis6-server
 Once the EC2 Instance is created and running, the bot will be active and replying to its designated commands!
 
 # Redeploying
-
-## Redeploy with AWS
 
 <b>1. Create GitHub Action Secret: Public IP</b>
 * Retrieve the Public IPv4 address from your AWS EC2 Instance.
